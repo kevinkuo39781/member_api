@@ -43,7 +43,9 @@ public class EmailService {
 
     public void sendActivationEmail(String toEmail, String activationToken) {
         String subject = "請啟用您的帳號";
-        String activationUrl = "http://localhost:8080/auth/activate?token=" + activationToken;
+
+        // TODO 這專案暫時寫死不抽 Domain
+        String activationUrl = "https://memberapi.dionysus.pro/auth/activate?token=" + activationToken;
         
         String htmlContent = String.format("""
             <h2>歡迎加入會員服務！</h2>
