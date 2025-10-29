@@ -5,8 +5,11 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class OpenApiConfig {
@@ -14,6 +17,14 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
+                .servers(List.of(
+                        new Server()
+                                .url("https://memberapi.dionysus.pro")
+                                .description("Production"),
+                        new Server()
+                                .url("http://localhost:8080")
+                                .description("Local development")
+                ))
                 .info(new Info()
                         .title("Member API")
                         .description("會員管理系統 API 文檔 - 支援 Email 註冊、兩階段登入、JWT 認證")
