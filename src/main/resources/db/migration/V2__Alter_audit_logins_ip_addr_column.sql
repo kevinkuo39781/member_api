@@ -1,0 +1,1 @@
+ALTER TABLE audit_logins ALTER COLUMN ip_addr TYPE VARCHAR(45);
