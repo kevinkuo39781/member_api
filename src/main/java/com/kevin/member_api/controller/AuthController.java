@@ -32,8 +32,8 @@ public class AuthController {
     @Operation(summary = "用戶註冊", description = "使用 Email 和密碼註冊新用戶")
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "註冊成功"),
-        @ApiResponse(responseCode = "400", description = "請求參數錯誤"),
-        @ApiResponse(responseCode = "409", description = "Email 已被註冊")
+        @ApiResponse(responseCode = "400", description = "請求參數錯誤", content = @Content),
+        @ApiResponse(responseCode = "409", description = "Email 已被註冊", content = @Content)
     })
     public ResponseEntity<RegisterResponse> register(
             @Valid @RequestBody AuthRequest request,
@@ -130,7 +130,7 @@ public class AuthController {
         @ApiResponse(responseCode = "200", description = "刷新成功",
             content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = AccessTokenResponse.class))),
-        @ApiResponse(responseCode = "401", description = "Refresh Token 無效或已過期")
+        @ApiResponse(responseCode = "401", description = "Refresh Token 無效或已過期", content = @Content)
     })
     public ResponseEntity<AccessTokenResponse> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
         AccessTokenResponse response = authService.refreshToken(request.getRefreshToken());
